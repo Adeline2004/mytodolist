@@ -1,10 +1,14 @@
-import React from 'react'
+import React from "react";
+import { Trash } from "react-feather";
+import Button from "../Boutton";
 
 const Todo = props => (
   <div>
     {props.item}
-    <button onClick={() => props.deleteItem()}>x</button>
+    <Button onClick={() => props.deleteItem()}>
+      <Trash size={16} />
+    </Button>
   </div>
-)
+);
 
-export default Todo
+export default Todo;
