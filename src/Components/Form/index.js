@@ -1,13 +1,15 @@
-import React, { Component } from "react";
-import { Plus } from "react-feather";
-import styled from "styled-components";
-import Button from "../Boutton";
+import React, { Component } from 'react'
+// import { Plus } from "react-feather";
+import styled from 'styled-components'
+import Button from '../Boutton'
 
 const FormWrapper = styled.div`
   color: #ee6e78;
   font-size: 32px;
   font-family: Raleway;
-`;
+  display: flex;
+  justify-content: center;
+`
 
 const Input = styled.input`
   color: #ee6e78;
@@ -22,41 +24,39 @@ const Input = styled.input`
     outline-color: #ee6e78;
     outline-style: dashed;
   }
-`;
+`
 
 class Form extends Component {
   state = {
-    newTask: ""
-  };
+    newTask: ''
+  }
 
   handleChange = event => {
-    this.setState({ newTask: event.target.value });
-  };
+    this.setState({ newTask: event.target.value })
+  }
 
-  render() {
-    const { addNewTask } = this.props;
-    const { newTask } = this.state;
+  render () {
+    const { addNewTask } = this.props
+    const { newTask } = this.state
     return (
       <FormWrapper>
         <form
           onSubmit={event => {
-            event.preventDefault();
-            addNewTask(newTask);
-            this.setState({ newTask: "" });
+            event.preventDefault()
+            addNewTask(newTask)
+            this.setState({ newTask: '' })
           }}
         >
           <Input
-            placeholder="Nouvelle tache"
+            placeholder='Nouvelle tache'
             value={newTask}
             onChange={event => this.handleChange(event)}
           />
-          <Button type="submit">
-            <Plus size={12} />
-          </Button>
+          <Button type='submit'>{/* <Plus size={12} /> */}+</Button>
         </form>
       </FormWrapper>
-    );
+    )
   }
 }
 
-export default Form;
+export default Form
