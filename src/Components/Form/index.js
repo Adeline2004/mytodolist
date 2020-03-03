@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-// import { Plus } from "react-feather";
+import { Plus } from 'react-feather'
 import styled from 'styled-components'
 import Button from '../Boutton'
+import Input from '../Input'
 
 const FormWrapper = styled.div`
   color: #ee6e78;
@@ -9,21 +10,6 @@ const FormWrapper = styled.div`
   font-family: Raleway;
   display: flex;
   justify-content: center;
-`
-
-const Input = styled.input`
-  color: #ee6e78;
-  height: 28px;
-  font-size: 16px;
-  font-family: Raleway;
-  font-weight: bold;
-  background-color: #fff;
-  border: 1px solid #ee6e78;
-  border-radius: 4px;
-  &:focus {
-    outline-color: #ee6e78;
-    outline-style: dashed;
-  }
 `
 
 class Form extends Component {
@@ -52,7 +38,9 @@ class Form extends Component {
             value={newTask}
             onChange={event => this.handleChange(event)}
           />
-          <Button type='submit'>{/* <Plus size={12} /> */}+</Button>
+          <Button type='submit'>
+            <Plus size={16} />
+          </Button>
         </form>
       </FormWrapper>
     )

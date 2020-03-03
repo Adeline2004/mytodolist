@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
-// import { Trash } from "react-feather";
+import { Trash } from 'react-feather'
+import { Edit } from 'react-feather'
 import Button from '../Boutton'
+import Input from '../Input'
 
 const TodoWrapper = styled.div`
   display: flex;
@@ -15,13 +17,44 @@ const itemWrapper = styled.div`
   display: flex;
 `
 
-const Todo = props => (
-  <TodoWrapper>
-    <itemWrapper>{props.item}</itemWrapper>
-    <Button onClick={() => props.deleteItem()}>
-      {/* <Trash size={16} /> */}x
-    </Button>
-  </TodoWrapper>
-)
+class Todo extends Component {
+  state = {
+    item: '',
+    statut: true
+  }
+
+  editItem = () => {
+    const newStatut = this.state.statut
+    this.setState({ statut: !newStatut })
+  }
+
+  itemInchange = event => {
+    this.setState({ item: event.target.value })
+  }
+
+  render () {
+    const { deleteItem, item } = this.props
+    const { statut } = this.state
+    return (
+      <TodoWrapper>
+        <itemWrapper>
+          {statut ? (
+            item
+          ) : (
+            <Input value={item} onChange={event => this.itemInchange(event)} />
+          )}
+        </itemWrapper>
+        <div>
+          <Button onClick={() => this.editItem()}>
+            <Edit size={16} />
+          </Button>
+          <Button onClick={() => deleteItem()}>
+            <Trash size={16} />
+          </Button>
+        </div>
+      </TodoWrapper>
+    )
+  }
+}
 
 export default Todo

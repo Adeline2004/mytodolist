@@ -46,6 +46,7 @@ class App extends Component {
         <Todolist
           Todos={list}
           deleteItem={index => this.deleteIteminList(index)}
+          editItem={() => this.editIteminList()}
         />
       </AppWrapper>
     )
