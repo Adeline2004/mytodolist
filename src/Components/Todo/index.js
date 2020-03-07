@@ -13,13 +13,13 @@ const TodoWrapper = styled.div`
   margin: 2px;
   overflow: auto;
 `
-const itemWrapper = styled.div`
+const ItemWrapper = styled.div`
   display: flex;
 `
 
 class Todo extends Component {
   state = {
-    item: '',
+    item: this.props.item,
     statut: true
   }
 
@@ -28,24 +28,30 @@ class Todo extends Component {
     this.setState({ statut: !newStatut })
   }
 
-  itemInchange = event => {
+  onChangeItem = event => {
     this.setState({ item: event.target.value })
   }
 
   render () {
-    const { deleteItem, item } = this.props
-    const { statut } = this.state
+    const { deleteItem, editItem } = this.props
+    const { statut, item } = this.state
+    console.log('render:', item)
     return (
       <TodoWrapper>
-        <itemWrapper>
+        <ItemWrapper>
           {statut ? (
             item
           ) : (
-            <Input value={item} onChange={event => this.itemInchange(event)} />
+            <Input value={item} onChange={event => this.onChangeItem(event)} />
           )}
-        </itemWrapper>
+        </ItemWrapper>
         <div>
-          <Button onClick={() => this.editItem()}>
+          <Button
+            onClick={() => {
+              this.editItem()
+              editItem(item)
+            }}
+          >
             <Edit size={16} />
           </Button>
           <Button onClick={() => deleteItem()}>

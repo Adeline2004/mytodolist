@@ -8,11 +8,17 @@ const TodolistWrapper = styled.div`
 `
 
 const Todolist = props => {
-  const { Todos, deleteItem } = props
+  const { todos, deleteItem, editItem } = props
+  console.log('render:', todos)
   return (
     <TodolistWrapper>
-      {Todos.map((item, index) => (
-        <Todo item={item} deleteItem={() => deleteItem(index)} />
+      {todos.map((item, index) => (
+        <Todo
+          key={`todo-${item}-${index}`}
+          item={item}
+          deleteItem={() => deleteItem(index)}
+          editItem={item => editItem(item, index)}
+        />
       ))}
     </TodolistWrapper>
   )
