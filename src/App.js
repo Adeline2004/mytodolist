@@ -28,14 +28,14 @@ class App extends Component {
     this.setState({ list: newList })
   }
 
-  deleteIteminList = index => {
+  deleteItemInList = index => {
     console.log('delete:', this.state.list, index)
     const newListDelete = [...this.state.list]
     newListDelete.splice(index, 1)
     this.setState({ list: newListDelete })
   }
 
-  editIteminList = (item, index) => {
+  editItemInList = (item, index) => {
     console.log('edit:', this.state.list, index, item)
     const editList = [...this.state.list]
     editList.splice(index, 1, item)
@@ -55,8 +55,8 @@ class App extends Component {
         />
         <Todolist
           todos={list}
-          deleteItem={index => this.deleteIteminList(index)}
-          editItem={(item, index) => this.editIteminList(item, index)}
+          deleteItem={index => this.deleteItemInList(index)}
+          editItem={(item, index) => this.editItemInList(item, index)}
         />
       </AppWrapper>
     )

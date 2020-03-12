@@ -29,7 +29,9 @@ class Form extends Component {
         <form
           onSubmit={event => {
             event.preventDefault()
-            addNewTask(newTask)
+            newTask === ''
+              ? alert('Veuillez entrer une tache')
+              : addNewTask(newTask)
             this.setState({ newTask: '' })
           }}
         >

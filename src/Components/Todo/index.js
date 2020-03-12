@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Trash } from 'react-feather'
 import { Edit } from 'react-feather'
+import { Circle } from 'react-feather'
 import Button from '../Boutton'
 import Input from '../Input'
 
@@ -12,9 +13,14 @@ const TodoWrapper = styled.div`
   justify-content: space-between;
   margin: 2px;
   overflow: auto;
+  font-family: Raleway;
+  font-weight: bold;
+  border-radius: 4px;
 `
 const ItemWrapper = styled.div`
   display: flex;
+  margin: 8px;
+  font-size: 16px;
 `
 
 class Todo extends Component {
@@ -38,13 +44,13 @@ class Todo extends Component {
     console.log('render:', item)
     return (
       <TodoWrapper>
-        <ItemWrapper>
+        <div>
           {statut ? (
-            item
+            <ItemWrapper>{item}</ItemWrapper>
           ) : (
             <Input value={item} onChange={event => this.onChangeItem(event)} />
           )}
-        </ItemWrapper>
+        </div>
         <div>
           <Button
             onClick={() => {
