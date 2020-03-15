@@ -7,14 +7,26 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 import './fonts/Raleway-Regular.ttf'
 
-const reducer = (state = { todos: ['test1', 'test2'] }, action) => {
+const reducer = (state = { todos: [] }, action) => {
   const { type, payload } = action
-  console.log(type, payload)
   switch (type) {
-    case 'ADD_TODO':
+    case 'ADD_TODO': {
       const newState = { ...state }
       newState.todos = [...newState.todos, payload.todo]
       return newState
+    }
+    case 'EDIT_TODO': {
+      const newState = { ...state }
+      newState.todos = [...newState.todos]
+      newState.todos.splice(payload.index, 1, payload.item)
+      return newState
+    }
+    case 'DELETE_TODO': {
+      const newState = { ...state }
+      newState.todos = [...newState.todos]
+      newState.todos.splice(payload.index, 1)
+      return newState
+    }
     default:
       return state
   }
@@ -24,6 +36,12 @@ export const getTodos = state => state.todos
 
 export const addTodo = todo => dispatch =>
   dispatch({ type: 'ADD_TODO', payload: { todo } })
+
+export const editTodo = (item, index) => dispatch =>
+  dispatch({ type: 'EDIT_TODO', payload: { item, index } })
+
+export const deleteTodo = index => dispatch =>
+  dispatch({ type: 'DELETE_TODO', payload: { index } })
 
 const store = createStore(reducer)
 

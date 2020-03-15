@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { getTodos } from '../../index'
+import { editTodo } from '../../index'
+import { deleteTodo } from '../../index'
 import Todo from '../Todo'
 
 const TodolistWrapper = styled.div`
@@ -28,4 +30,12 @@ const Todolist = props => {
 
 const mapStateToProps = state => ({ todos: getTodos(state) })
 
-export default connect(mapStateToProps)(Todolist)
+const mapDispatchToProps = dispatch => ({
+  editItem: (item, index) => editTodo(item, index)(dispatch),
+  deleteItem: index => deleteTodo(index)(dispatch)
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Todolist)
