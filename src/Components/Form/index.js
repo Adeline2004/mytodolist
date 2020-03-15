@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import { Plus } from 'react-feather'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 import Button from '../Boutton'
 import Input from '../Input'
+import { addTodo } from '../../index'
 
 const FormWrapper = styled.div`
   color: #ee6e78;
   font-size: 32px;
   font-family: Raleway;
+`
+
+const InputWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  align-items: center;
 `
 
 class Form extends Component {
@@ -35,18 +40,27 @@ class Form extends Component {
             this.setState({ newTask: '' })
           }}
         >
-          <Input
-            placeholder='Nouvelle tache'
-            value={newTask}
-            onChange={event => this.handleChange(event)}
-          />
-          <Button type='submit'>
-            <Plus size={16} />
-          </Button>
+          <InputWrapper>
+            <Input
+              placeholder='Nouvelle tache'
+              value={newTask}
+              onChange={event => this.handleChange(event)}
+            />
+            <Button type='submit'>
+              <Plus size={16} />
+            </Button>
+          </InputWrapper>
         </form>
       </FormWrapper>
     )
   }
 }
 
-export default Form
+const mapDispatchToProps = dispatch => ({
+  addNewTask: newTask => addTodo(newTask)(dispatch)
+})
+
+export default connect(
+  state => ({}),
+  mapDispatchToProps
+)(Form)

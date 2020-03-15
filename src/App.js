@@ -23,38 +23,28 @@ class App extends Component {
   }
 
   addNewItemInList = newTask => {
-    console.log('add:', this.state.list, newTask)
     const newList = [...this.state.list, newTask]
     this.setState({ list: newList })
   }
 
   deleteItemInList = index => {
-    console.log('delete:', this.state.list, index)
     const newListDelete = [...this.state.list]
     newListDelete.splice(index, 1)
     this.setState({ list: newListDelete })
   }
 
   editItemInList = (item, index) => {
-    console.log('edit:', this.state.list, index, item)
     const editList = [...this.state.list]
     editList.splice(index, 1, item)
     this.setState({ list: editList })
   }
 
   render () {
-    const { list } = this.state
-    console.log('render:', this.state.list)
     return (
       <AppWrapper>
         <Title name='Ma Todo liste' />
-        <Form
-          addNewTask={newTask => {
-            this.addNewItemInList(newTask)
-          }}
-        />
+        <Form />
         <Todolist
-          todos={list}
           deleteItem={index => this.deleteItemInList(index)}
           editItem={(item, index) => this.editItemInList(item, index)}
         />

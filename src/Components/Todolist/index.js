@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import { getTodos } from '../../index'
 import Todo from '../Todo'
 
 const TodolistWrapper = styled.div`
@@ -9,7 +11,7 @@ const TodolistWrapper = styled.div`
 
 const Todolist = props => {
   const { todos, deleteItem, editItem } = props
-  console.log('render:', todos)
+
   return (
     <TodolistWrapper>
       {todos.map((item, index) => (
@@ -24,4 +26,6 @@ const Todolist = props => {
   )
 }
 
-export default Todolist
+const mapStateToProps = state => ({ todos: getTodos(state) })
+
+export default connect(mapStateToProps)(Todolist)

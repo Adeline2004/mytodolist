@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Trash } from 'react-feather'
 import { Edit } from 'react-feather'
-import { Circle } from 'react-feather'
 import Button from '../Boutton'
 import Input from '../Input'
 
@@ -41,7 +40,7 @@ class Todo extends Component {
   render () {
     const { deleteItem, editItem } = this.props
     const { statut, item } = this.state
-    console.log('render:', item)
+
     return (
       <TodoWrapper>
         <div>
